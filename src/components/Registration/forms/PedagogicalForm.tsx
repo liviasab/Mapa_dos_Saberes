@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, X, Info } from 'lucide-react';
-
-interface PedagogicalData {
-  contents: string[];
-  objectives: string[];
-  methodologies: string[];
-  evaluations: string[];
-  learning_objective: string;
-  general_methodology: string;
-  society_relationship: string;
-  teacher_contribution: string;
-  recommended_references: string;
-}
+import { PedagogicalData } from '../../../types';
 
 interface PedagogicalFormProps {
   data: Partial<PedagogicalData>;

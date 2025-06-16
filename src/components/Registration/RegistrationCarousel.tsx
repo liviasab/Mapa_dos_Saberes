@@ -1,38 +1,38 @@
-import React, { useState, useCallback, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
-import { AboutPlaceForm } from './forms/AboutPlaceForm';
-import { CharacteristicsForm } from './forms/CharacteristicsForm';
-import { InterdisciplinarityForm } from './forms/InterdisciplinarityForm';
-import { InclusionForm } from './forms/InclusionForm';
-import { TechnologiesForm } from './forms/TechnologiesForm';
-import { PedagogicalForm } from './forms/PedagogicalForm';
-import { supabase } from '../../lib/supabase';
-import { useAuth } from '../../contexts/AuthContext';
+import React, { useState, useCallback, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { ChevronLeft, ChevronRight, Home } from "lucide-react";
+import { AboutPlaceForm } from "./forms/AboutPlaceForm";
+import { CharacteristicsForm } from "./forms/CharacteristicsForm";
+import { InterdisciplinarityForm } from "./forms/InterdisciplinarityForm";
+import { InclusionForm } from "./forms/InclusionForm";
+import { TechnologiesForm } from "./forms/TechnologiesForm";
+import { PedagogicalForm } from "./forms/PedagogicalForm";
+import { supabase } from "../../lib/supabase";
+import { useAuth } from "../../contexts/AuthContext";
 
 interface SpaceFormData {
   [key: string]: any;
 }
 
 const FORM_STEPS = [
-  { title: 'About the Place', component: AboutPlaceForm },
-  { title: 'Characteristics', component: CharacteristicsForm },
-  { title: 'Interdisciplinarity', component: InterdisciplinarityForm },
-  { title: 'Inclusion & Accessibility', component: InclusionForm },
-  { title: 'Technologies', component: TechnologiesForm },
-  { title: 'Pedagogical Information', component: PedagogicalForm },
+  { title: "About the Place", component: AboutPlaceForm },
+  { title: "Characteristics", component: CharacteristicsForm },
+  { title: "Interdisciplinarity", component: InterdisciplinarityForm },
+  { title: "Inclusion & Accessibility", component: InclusionForm },
+  { title: "Technologies", component: TechnologiesForm },
+  { title: "Pedagogical Information", component: PedagogicalForm },
 ];
 
 const getInitialStepData = (stepIndex: number): SpaceFormData => {
   const step = FORM_STEPS[stepIndex];
   if (step.component === AboutPlaceForm) {
     return {
-      name: '',
-      visit_date: '',
-      address: '',
-      contact: '',
-      email: '',
-      description: '',
+      name: "",
+      visit_date: "",
+      address: "",
+      contact: "",
+      email: "",
+      description: "",
       media_urls: [],
     };
   }
@@ -48,21 +48,24 @@ export const RegistrationCarousel: React.FC = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
-  const initialStepDataString = JSON.stringify(FORM_STEPS.map((_, index) => getInitialStepData(index)));
+  const initialStepDataString = JSON.stringify(
+    FORM_STEPS.map((_, index) => getInitialStepData(index))
+  );
 
   useEffect(() => {
     const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       const currentStepDataString = JSON.stringify(stepData);
       if (currentStepDataString !== initialStepDataString) {
         event.preventDefault();
-        event.returnValue = 'Você tem alterações não salvas. Tem certeza que deseja sair? As informações inseridas serão perdidas.';
+        event.returnValue =
+          "Você tem alterações não salvas. Tem certeza que deseja sair? As informações inseridas serão perdidas.";
       }
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, [stepData, initialStepDataString]);
 
@@ -79,7 +82,18 @@ export const RegistrationCarousel: React.FC = () => {
   };
 
   const handleGoBackToList = () => {
-    navigate('/spaces');
+    const currentStepDataString = JSON.stringify(stepData);
+    if (currentStepDataString !== initialStepDataString) {
+      if (
+        window.confirm(
+          "Você tem alterações não salvas. Tem certeza que deseja sair? As informações inseridas serão perdidas."
+        )
+      ) {
+        navigate("/spaces");
+      }
+    } else {
+      navigate("/spaces");
+    }
   };
 
   const handleStepData = useCallback(
@@ -95,7 +109,7 @@ export const RegistrationCarousel: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!user) {
-      alert('Authentication error. Please log in again.');
+      alert("Authentication error. Please log in again.");
       return;
     }
 
@@ -108,24 +122,27 @@ export const RegistrationCarousel: React.FC = () => {
       );
 
       const { error: dbError } = await supabase
-        .from('spaces')
+        .from("spaces")
         .insert([completeData]);
 
       if (dbError) {
-        throw new Error('Error saving space to database: ' + dbError.message);
+        throw new Error("Error saving space to database: " + dbError.message);
       }
 
-      alert('Space registered successfully!');
-      navigate('/spaces');
+      alert("Space registered successfully!");
+      navigate("/spaces");
     } catch (error: any) {
-      console.error('Error during submission:', error.message);
-      alert('An error occurred during submission. Please try again. ' + error.message);
+      console.error("Error during submission:", error.message);
+      alert(
+        "An error occurred during submission. Please try again. " +
+          error.message
+      );
     } finally {
       setLoading(false);
       stepData.forEach((step) => {
         if (step.media_urls) {
           step.media_urls.forEach((url: string) => {
-            if (url.startsWith('blob:')) {
+            if (url.startsWith("blob:")) {
               URL.revokeObjectURL(url);
             }
           });
@@ -151,7 +168,9 @@ export const RegistrationCarousel: React.FC = () => {
               <Home className="w-6 h-6" />
             </button>
 
-            <h1 className="text-2xl font-bold text-gray-900">Register New Space</h1>
+            <h1 className="text-2xl font-bold text-gray-900">
+              Register New Space
+            </h1>
 
             <div className="text-sm text-gray-500">
               Step {currentStep + 1} of {FORM_STEPS.length}
@@ -165,8 +184,8 @@ export const RegistrationCarousel: React.FC = () => {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                       index <= currentStep
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-500'
+                        ? "bg-blue-500 text-white"
+                        : "bg-gray-200 text-gray-500"
                     }`}
                   >
                     {index + 1}
@@ -174,7 +193,7 @@ export const RegistrationCarousel: React.FC = () => {
                   {index < FORM_STEPS.length - 1 && (
                     <div
                       className={`flex-1 h-1 mx-2 ${
-                        index < currentStep ? 'bg-blue-500' : 'bg-gray-200'
+                        index < currentStep ? "bg-blue-500" : "bg-gray-200"
                       }`}
                     />
                   )}
@@ -186,7 +205,7 @@ export const RegistrationCarousel: React.FC = () => {
                 <span
                   key={index}
                   className={`text-xs ${
-                    index <= currentStep ? 'text-blue-600' : 'text-gray-400'
+                    index <= currentStep ? "text-blue-600" : "text-gray-400"
                   }`}
                 >
                   {step.title}
@@ -235,7 +254,7 @@ export const RegistrationCarousel: React.FC = () => {
                   disabled={loading}
                   className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition-colors disabled:opacity-50"
                 >
-                  {loading ? 'Submitting...' : 'Submit Registration'}
+                  {loading ? "Submitting..." : "Submit Registration"}
                 </button>
               )}
             </div>

@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, X } from 'lucide-react';
-
-interface InclusionData {
-  inclusion_tags: string[];
-  additional_inclusion: string[];
-}
+import { InclusionData } from '../../../types';
 
 interface InclusionFormProps {
   data: Partial<InclusionData>;

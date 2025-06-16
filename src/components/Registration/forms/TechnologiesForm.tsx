@@ -1,17 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Plus, X, Info } from "lucide-react";
-
-interface TechnologiesData {
-  digital_technologies: string[];
-  didactic_strategies: string[];
-  technology_relationships: Array<{
-    technologyName: string;
-    physics: string;
-    chemistry: string;
-    mathematics: string;
-  }>;
-  technology_developments: string[];
-}
+import { TechnologiesData } from "../../../types";
 
 interface TechnologiesFormProps {
   data: Partial<TechnologiesData>;
