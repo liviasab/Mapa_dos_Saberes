@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, Home } from 'lucide-react';
 import { AboutPlaceForm } from './forms/AboutPlaceForm';
@@ -47,6 +47,24 @@ export const RegistrationCarousel: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { user } = useAuth();
+
+  const initialStepDataString = JSON.stringify(FORM_STEPS.map((_, index) => getInitialStepData(index)));
+
+  useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      const currentStepDataString = JSON.stringify(stepData);
+      if (currentStepDataString !== initialStepDataString) {
+        event.preventDefault();
+        event.returnValue = 'Você tem alterações não salvas. Tem certeza que deseja sair? As informações inseridas serão perdidas.';
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [stepData, initialStepDataString]);
 
   const handleNext = () => {
     if (currentStep < FORM_STEPS.length - 1) {

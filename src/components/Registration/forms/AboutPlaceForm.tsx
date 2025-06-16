@@ -10,17 +10,7 @@ import {
 } from "lucide-react";
 import { supabase } from "../../../lib/supabase";
 import { StarRating } from "../../Rating/StarRating";
-
-interface AboutPlaceData {
-  name: string;
-  visit_date: string;
-  address: string;
-  contact: string;
-  email: string;
-  description: string;
-  media_urls: string[];
-  rating: number;
-}
+import { AboutPlaceData } from "../../../types";
 
 interface AboutPlaceFormProps {
   data: AboutPlaceData;

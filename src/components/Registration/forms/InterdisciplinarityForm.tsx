@@ -1,16 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Info, X } from 'lucide-react';
-
-interface InterdisciplinarityData {
-  disciplines: string[];
-  main_theme: string;
-  other_themes: string[];
-  interdisciplinary_associations: Array<{
-    response: string;
-    disciplines: string[];
-  }>;
-  additional_info: string;
-}
+import { InterdisciplinarityData } from '../../../types';
 
 interface InterdisciplinarityFormProps {
   data: Partial<InterdisciplinarityData>;

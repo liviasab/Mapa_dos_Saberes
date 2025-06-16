@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-interface CharacteristicsData {
-  access_tags?: string[];
-  theme_tags?: string[];
-}
+import { CharacteristicsData } from '../../../types';
 
 interface CharacteristicsFormProps {
   data: CharacteristicsData;
