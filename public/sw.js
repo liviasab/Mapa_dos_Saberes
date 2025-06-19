@@ -1,4 +1,4 @@
-const CACHE_NAME = 'space-explorer-v1';
+const CACHE_NAME = 'mapa-saberes-v1';
 const urlsToCache = [
   '/',
   '/static/js/bundle.js',

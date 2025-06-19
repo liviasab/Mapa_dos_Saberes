@@ -86,25 +86,26 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
         <button
           type="button"
           onClick={() => setShowContext(true)}
-          className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+          className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
         >
           <Info className="w-5 h-5" />
-          <span>Context</span>
+          <span>Contexto</span>
         </button>
       </div>
 
       {/* Example Area */}
       <div className="bg-gray-50 p-4 rounded-lg">
-        <h4 className="font-medium text-gray-900 mb-2">Example: Area 1 - Panels</h4>
+        <h4 className="font-medium text-gray-900 mb-2">Leia o contexto acima:</h4>
         <p className="text-sm text-gray-600">
-          This serves as a reference for structuring your pedagogical information across different areas of the space.
+            Entendendo que todo espaço não formal pode ser dividido por áreas, onde cada uma possui temas distintos e abordam diversos conteúdos de forma interdisciplinar e que utilizam metodologia específica, no espaço visitado identifique suas respectivas áreas:
+          "Cite o nome de cada uma em formas de tópicos" e fale didaticamente sobre os “conteúdos”,  "objetivos", “metodologia”, "avaliação" e “pontos de interdisciplinaridade” presente em cada área.
         </p>
       </div>
 
       {/* Contents */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Answer the topic referring to the "contents" of the visited space. *
+          Responda o tópico referente ao "conteúdo" do espaço visitado. *
         </label>
         <div className="space-y-3">
           {contents.map((content, index) => (
@@ -113,8 +114,8 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
               <textarea
                 value={content}
                 onChange={(e) => updateItem(setContents, contents, index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Describe the content available in this area"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Descreva o conteúdo disponível nesta área"
                 rows={2}
               />
               {index > 0 && (
@@ -131,10 +132,10 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
           <button
             type="button"
             onClick={() => addItem(setContents, contents)}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -142,7 +143,7 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
       {/* Objectives */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Answer the topic referring to the "Objectives" of the visited space. *
+          Responda o tópico referente aos "objetivos" do espaço visitado. *
         </label>
         <div className="space-y-3">
           {objectives.map((objective, index) => (
@@ -151,8 +152,8 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
               <textarea
                 value={objective}
                 onChange={(e) => updateItem(setObjectives, objectives, index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Describe the objectives of this area"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Descreva os objetivos desta área"
                 rows={2}
               />
               {index > 0 && (
@@ -169,10 +170,10 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
           <button
             type="button"
             onClick={() => addItem(setObjectives, objectives)}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -180,7 +181,7 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
       {/* Methodologies */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Answer the topic referring to the "Methodologies" of the visited space. *
+          Responda o tópico referente às "metodologias" do espaço visitado. *
         </label>
         <div className="space-y-3">
           {methodologies.map((methodology, index) => (
@@ -189,8 +190,8 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
               <textarea
                 value={methodology}
                 onChange={(e) => updateItem(setMethodologies, methodologies, index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Describe the methodologies used in this area"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Descreva as metodologias utilizadas nesta área"
                 rows={2}
               />
               {index > 0 && (
@@ -207,10 +208,10 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
           <button
             type="button"
             onClick={() => addItem(setMethodologies, methodologies)}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -218,7 +219,7 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
       {/* Evaluations */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Answer the topic referring to how the "Evaluation" of the visited space will be done. *
+          Responda o tópico referente à "avaliação" do espaço visitado. *
         </label>
         <div className="space-y-3">
           {evaluations.map((evaluation, index) => (
@@ -227,8 +228,8 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
               <textarea
                 value={evaluation}
                 onChange={(e) => updateItem(setEvaluations, evaluations, index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Describe how evaluation will be conducted"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Descreva como a avaliação será conduzida"
                 rows={2}
               />
               {index > 0 && (
@@ -245,10 +246,10 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
           <button
             type="button"
             onClick={() => addItem(setEvaluations, evaluations)}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -257,66 +258,66 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
       <div className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            What is the learning objective of visiting this space? *
+          Qual o objetivo de aprendizagem na visita deste espaço? *
           </label>
           <textarea
             value={learningObjective}
             onChange={(e) => setLearningObjective(e.target.value)}
             rows={3}
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Describe the main learning objective"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+            placeholder="Descreva o objetivo de aprendizado do espaço visitado"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            What is the general methodology used in visiting this non-formal space? *
+          Qual a metodologia geral utilizada na visita deste espaço não formal? *
           </label>
           <textarea
             value={generalMethodology}
             onChange={(e) => setGeneralMethodology(e.target.value)}
             rows={3}
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Describe the general methodology"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+            placeholder="Descreva a metodologia geral"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            What is the relationship between this visited non-formal space and society? *
+          Qual a relação que este espaço não formal visitado possui com a sociedade? *
           </label>
           <textarea
             value={societyRelationship}
             onChange={(e) => setSocietyRelationship(e.target.value)}
             rows={3}
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Describe the relationship with society"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+            placeholder="Descreva a relação com a sociedade"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            What is the contribution of the visited space to teacher training? And to your personal learning? *
+          Qual a contribuição do espaço visitado para a formação de professores? E para sua aprendizagem pessoal? *
           </label>
           <textarea
             value={teacherContribution}
             onChange={(e) => setTeacherContribution(e.target.value)}
             rows={3}
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="Describe contributions to teacher training and personal learning"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+            placeholder="Descreva as contribuições para a formação docente e para o seu aprendizado pessoal"
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Recommended references for working on themes and topics covered in the visited non-formal space: *
+        Referências indicadas para trabalhar temáticas e temas abordados no espaço não formal visitado: *
           </label>
           <textarea
             value={recommendedReferences}
             onChange={(e) => setRecommendedReferences(e.target.value)}
             rows={4}
-            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            placeholder="List recommended references, resources, and materials"
+            className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+            placeholder="Liste referências, recursos e materiais"
           />
         </div>
       </div>
@@ -326,19 +327,32 @@ export const PedagogicalForm: React.FC<PedagogicalFormProps> = ({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-2xl max-h-96 overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Context Information</h3>
+              <h3 className="text-lg font-semibold">Informações Contextuais</h3>
               <button onClick={() => setShowContext(false)}>
                 <X className="w-6 h-6" />
               </button>
             </div>
             <div className="text-sm text-gray-600 space-y-2">
               <p>
-                This section focuses on the pedagogical aspects of the educational space, including learning objectives, 
-                methodologies, content organization, and evaluation strategies.
+              Exemplo: No Museu de Ciências Nucleares do Recife temos quatro áreas, porém vamos citar como exemplo uma delas como modelo:
               </p>
               <p>
-                Consider how the space facilitates learning, what educational goals it serves, and how it can be 
-                integrated into formal educational programs.
+              Área 1 - Painéis:
+              </p>
+              <p>
+              Conteúdos: Nessa primeira área do museu são abordados vários conteúdos relacionados com a radioatividade, tais como: história da radioatividade, medicina nuclear, definição de radioatividade, radiação de alimentos, radiação ambiental, tecnologias radioativas e engenharia nuclear;
+              </p>
+              <p>
+              Objetivo: Como o objetivo dessa área é fazer uma introdução do que vai ser apresentado no museu, o professor pode se utilizar do mesmo objetivo para mostrar aos discentes o que vai ser apresentado, e verificar o nível de conhecimento que os estudantes já possuem acerca da radioatividade;
+              </p>
+              <p>
+              Metodologia: como nessa área é feito uma introdução dos conteúdos que vão se apresentados no museu, o professor poderá fazer perguntas junto com o monitor e verificar o nível de conhecimento que os alunos já possuem sobre a radioatividade além de verificar a criatividade dos estudantes em relacionar os conteúdos abordados e o cotidiano;
+              </p>
+              <p>
+              Avaliação: o professor poderá ver o nível de participação dos estudantes além de posteriormente aplicar um questionário ou pedir um relatório sobre o que os estudantes aprenderam em cada parte do museu;
+              </p>
+              <p>
+              Pontos de interdisciplinaridade: Nessa área podemos notar que os pontos de interdisciplinaridade que podem ser trabalhados são os próprios conteúdos presentes no museu, pois em cada um temos vários temas presentes nas áreas de física, química e matemática.
               </p>
             </div>
           </div>

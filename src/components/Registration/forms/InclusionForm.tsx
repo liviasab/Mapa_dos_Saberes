@@ -8,17 +8,22 @@ interface InclusionFormProps {
 }
 
 const INCLUSION_OPTIONS = [
-  'Architectural accessibility',
-  'Partial accessibility',
-  'Audio describer',
-  'Audio description',
-  'Libras interpreter',
-  'Monitor who knows Libras',
-  'Braille interpreter',
-  'Hire professional',
-  'No accessibility resources',
-  'Staff make the visit accessible',
-  'Staff do not make the visit accessible',
+  
+
+"Possui acessibilidade arquitetônica (rampas, piso tátil, etc…) para PcD",
+"Possui parcial acessibilidade arquitetônica (rampas, piso tátil, etc…)para PcD",
+"Possui profissional áudio descritor",
+"Faz uso de algum recurso equivalente à audiodescrição",
+"Possui tradutor intérprete de Libras ou faz uso de recurso equivalente para acesso a interpretação de libras",
+"Possui tradutor intérprete de Braille ou faz uso de recurso equivalente para acesso de deficientes visuais",
+"Possui algum funcionário/ monitor com conhecimento da linguagem de Libras",
+"No agendamento da visita se for comunicada a ida de um visitante, com deficiência, o espaço se organiza (contrata profissional de Libras, audiodescritor, etc…) para receber e incluí-la da melhor maneira possível",
+"No agendamento da visita se for comunicada a ida de um visitante surdo, o espaço se organiza (contrata profissional de Libras, audiodescritor, etc…) para receber e incluí-la da melhor maneira possível",
+"No agendamento da visita se for comunicada a ida de um visitantede baixa visão, o espaço se organiza (contrata profissional de Braille, ou se utiliza de outros recursos) para receber e incluí-la da melhor maneira possível",
+"Na visita se houver entre os visitantes pessoas com deficiência é de inteira responsabilidade do grupo ou responsável providenciar os recursos de acessibilidade",
+"Os funcionários/ monitores do espaço demonstram sensibilidade e interesse para tornar a visita acessível",
+"Os funcionários/ monitores demonstram resistência no recebimento de visitantes com deficiência",
+
 ];
 
 export const InclusionForm: React.FC<InclusionFormProps> = ({
@@ -76,7 +81,7 @@ export const InclusionForm: React.FC<InclusionFormProps> = ({
     <div className="space-y-8">
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-4">
-          Check the tags about the aspects involving inclusion: *
+          Marque as tags sobre os aspectos que envolve a inclusão: *
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {INCLUSION_OPTIONS.map((option) => (
@@ -88,7 +93,7 @@ export const InclusionForm: React.FC<InclusionFormProps> = ({
                 type="checkbox"
                 checked={inclusionTags.includes(option)}
                 onChange={() => toggleInclusionTag(option)}
-                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="w-5 h-5 text-[#12557B] border-gray-300 rounded focus:ring-[#12557B]"
               />
               <span className="text-gray-700 text-sm">{option}</span>
             </label>
@@ -98,7 +103,7 @@ export const InclusionForm: React.FC<InclusionFormProps> = ({
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Add other inclusion aspects:
+          Adicione outros aspectos de inclusão não listados que você observou no espaço :
         </label>
         <div className="space-y-3">
           {additionalItems.map((item, index) => (
@@ -106,8 +111,8 @@ export const InclusionForm: React.FC<InclusionFormProps> = ({
               <input
                 value={item}
                 onChange={(e) => updateAdditionalItem(index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter additional inclusion aspect"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Adicione outro aspecto de inclusão"
               />
               {index > 0 && (
                 <button
@@ -123,22 +128,22 @@ export const InclusionForm: React.FC<InclusionFormProps> = ({
           <button
             type="button"
             onClick={addAdditionalItem}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>Add another</span>
+            <span>Adicionar outro</span>
           </button>
         </div>
       </div>
 
       {inclusionTags.length > 0 && (
-        <div className="bg-green-50 p-4 rounded-lg">
-          <h4 className="font-medium text-green-900 mb-2">Selected Inclusion Features:</h4>
+        <div className="bg-gray-100 p-4 rounded-lg">
+          <h4 className="font-medium text-gray-800 mb-2">Aspectos de inclusão selecionados:</h4>
           <div className="flex flex-wrap gap-2">
             {inclusionTags.map((tag, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-green-100 text-green-800 text-sm rounded-full"
+                className="px-3 py-1 bg-[#40B873] text-white text-sm rounded-full"
               >
                 {tag}
               </span>

@@ -7,7 +7,7 @@ interface InterdisciplinarityFormProps {
   onDataChange: (data: InterdisciplinarityData) => void;
 }
 
-const DISCIPLINE_OPTIONS = ['Mathematics', 'Physics', 'Chemistry'];
+const DISCIPLINE_OPTIONS = ['Matemática', 'Física', 'Química'];
 
 export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = ({
   data,
@@ -106,7 +106,7 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
       {/* Disciplines Selection */}
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-4">
-          Check the tags of the disciplines that can be worked on: *
+        Disciplinas que podem ser trabalhadas no espaço visitado:
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {DISCIPLINE_OPTIONS.map((discipline) => (
@@ -118,7 +118,7 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
                 type="checkbox"
                 checked={disciplines.includes(discipline)}
                 onChange={() => toggleDiscipline(discipline)}
-                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="w-5 h-5 text-[#12557B] border-gray-300 rounded focus:ring-[#12557B]"
               />
               <span className="text-gray-700">{discipline}</span>
             </label>
@@ -131,30 +131,30 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
         <button
           type="button"
           onClick={() => setShowContext(true)}
-          className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+          className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
         >
           <Info className="w-5 h-5" />
-          <span>Context</span>
+          <span>Contexto</span>
         </button>
       </div>
 
       {/* Main Theme */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          What is the main theme of the visited space? *
+        Semelhante ao exemplo citado no contexto, neste espaço visitado qual(is) a(s) temática(s) abordada(s)?
         </label>
         <input
           value={mainTheme}
           onChange={(e) => setMainTheme(e.target.value)}
-          className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Enter the main theme"
+          className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+          placeholder="Digite o(s) tema(s) principal(is)"
         />
       </div>
 
       {/* Other Themes */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          What other themes can be worked on in the visited space?
+        E quais os possíveis temas que estão inseridos explicitamente no espaço? 
         </label>
         <div className="space-y-3">
           {otherThemes.map((theme, index) => (
@@ -163,8 +163,8 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
               <input
                 value={theme}
                 onChange={(e) => updateOtherTheme(index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter theme"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Digite o tema"
               />
               {index > 0 && (
                 <button
@@ -180,26 +180,26 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
           <button
             type="button"
             onClick={addOtherTheme}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Adicionar mais</span>
           </button>
         </div>
       </div>
 
       {/* Example Section */}
       <div className="bg-gray-50 p-4 rounded-lg">
-        <h4 className="font-medium text-gray-900 mb-2">Example: Nuclear Science Museum</h4>
+        <h4 className="font-medium text-gray-900 mb-2">Exemplo: Museu da Ciências Nucleares do Recife</h4>
         <p className="text-sm text-gray-600">
-          This serves as a reference for how to structure your responses about interdisciplinary themes and connections.
+        Tema abordado: Irradiação e Radiação, dentro desse tema qual o possível assunto que podemos trabalhar concomitantemente com as disciplinas citadas?
         </p>
       </div>
 
       {/* Interdisciplinary Associations */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          According to the theme, associate the discipline and topics that can be worked on in the space: *
+        A partir da visita ao espaço não formal, cite os pontos interdisciplinares encontrados dentro dos temas trabalhados que contemplem as disciplinas Química, Física e Matemática, citando, preferencialmente, as referências pedagógicas.*
         </label>
         <div className="space-y-4">
           {associations.map((assoc, index) => (
@@ -210,8 +210,8 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
                   <textarea
                     value={assoc.response}
                     onChange={(e) => updateAssociation(index, 'response', e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Describe the topic or concept"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                    placeholder="Descreva o tópico ou conceito"
                     rows={2}
                   />
                 </div>
@@ -227,7 +227,7 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
               </div>
               
               <div className="ml-10">
-                <p className="text-sm text-gray-600 mb-2">Associate with disciplines:</p>
+                <p className="text-sm text-gray-600 mb-2">Associe com disciplinas:</p>
                 <div className="flex space-x-3">
                   {DISCIPLINE_OPTIONS.map((discipline) => (
                     <label key={discipline} className="flex items-center space-x-1">
@@ -235,7 +235,7 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
                         type="checkbox"
                         checked={assoc.disciplines.includes(discipline)}
                         onChange={() => toggleAssociationDiscipline(index, discipline)}
-                        className="w-4 h-4 text-blue-600 border-gray-300 rounded"
+                        className="w-4 h-4 text-[#12557B] border-gray-300 rounded"
                       />
                       <span className="text-sm text-gray-700">{discipline}</span>
                     </label>
@@ -247,10 +247,10 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
           <button
             type="button"
             onClick={addAssociation}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Adicionar mais</span>
           </button>
         </div>
       </div>
@@ -258,14 +258,14 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
       {/* Additional Information */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Still about interdisciplinarity, present any additional relevant information:
+          Apresente algumas informações adicionais que julgue relevante:
         </label>
         <textarea
           value={additionalInfo}
           onChange={(e) => setAdditionalInfo(e.target.value)}
           rows={4}
-          className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Any additional relevant information about interdisciplinarity..."
+          className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+          placeholder="Qualquer informação adicional relevante sobre interdisciplinaridade..."
         />
       </div>
 
@@ -274,7 +274,7 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-2xl max-h-96 overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Context Information</h3>
+              <h3 className="text-lg font-semibold">Informação sobre Contexto</h3>
               <button
                 onClick={() => setShowContext(false)}
                 className="text-gray-500 hover:text-gray-700"
@@ -283,14 +283,9 @@ export const InterdisciplinarityForm: React.FC<InterdisciplinarityFormProps> = (
               </button>
             </div>
             <div className="text-sm text-gray-600 space-y-2">
-              <p>
-                This section focuses on understanding how different academic disciplines can be integrated 
-                within the educational space you're registering.
-              </p>
-              <p>
-                Consider how the space facilitates connections between Mathematics, Physics, and Chemistry 
-                through its content, activities, and learning opportunities.
-              </p>
+              <p>Para responder as próximas questões:</p>
+              <p>No Museu de Ciências Nucleares do Recife,  temos como a nossa principal temática a Radioatividade, e dentro do museu existem áreas que trabalham temas que estão diretamente ligados com a temática principal,
+                 exemplo: Segurança e radioproteção, Irradiação e radiação, Medicina nuclear e Geração Nucleoelétrica.</p>
             </div>
           </div>
         </div>

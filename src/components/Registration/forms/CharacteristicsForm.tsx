@@ -7,21 +7,24 @@ interface CharacteristicsFormProps {
 }
 
 const ACCESS_OPTIONS = [
-  'Easy location',
-  'Accessibility',
-  'Prior scheduling',
-  'Difficult location',
-  'Online visit',
-  'Interdisciplinary class',
-  'Monitors',
+  
+"Possui fácil localização.",
+"Possui difícil localização.",
+"Precisa fazer agendamento prévio para as visitas.",
+"Possui acessibilidade para PcD.",
+"Possui flexibilidade para aplicação de uma aula interdisciplinar.",
+"Possui monitores para a condução de visita guiada (orientação dentro do espaço).",
+"Possui acesso ao Tour Virtual (visita on-line)",
 ];
 
 const THEME_OPTIONS = [
-  'Scientific dissemination',
-  'Local culture',
-  'Sustainability',
-  'Interactive technologies',
-  'Environmental preservation',
+  
+"Divulgação científica e afins.",
+"Divulgação da cultura local ou regional, abordando aspectos históricos, artísticos e musicais.",
+"Sustentabilidade (visa equilibrar a preservação do meio ambiente e o que ele pode oferecer em consonância com a qualidade de vida da população).",
+"Tecnologias interativas ou alternativas.",
+"Natureza, preservação ambiental e conservação da biodiversidade",
+
 ];
 
 export const CharacteristicsForm: React.FC<CharacteristicsFormProps> = ({
@@ -65,7 +68,7 @@ export const CharacteristicsForm: React.FC<CharacteristicsFormProps> = ({
     <div className="space-y-8">
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-4">
-          Check the tags corresponding to space access:
+          Marque as tags correspondentes ao acesso do espaço:
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {ACCESS_OPTIONS.map((option) => (
@@ -77,7 +80,7 @@ export const CharacteristicsForm: React.FC<CharacteristicsFormProps> = ({
                 type="checkbox"
                 checked={accessTags.includes(option)}
                 onChange={() => toggleAccessTag(option)}
-                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="w-5 h-5 text-[#12557B] border-gray-300 rounded focus:ring-[#12557B]"
               />
               <span className="text-gray-700">{option}</span>
             </label>
@@ -87,7 +90,7 @@ export const CharacteristicsForm: React.FC<CharacteristicsFormProps> = ({
 
       <div>
         <h3 className="text-lg font-medium text-gray-900 mb-4">
-          Check the tags corresponding to possible themes worked on in the space:
+        Qual dessas temáticas o espaço trabalha?
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
           {THEME_OPTIONS.map((option) => (
@@ -99,7 +102,7 @@ export const CharacteristicsForm: React.FC<CharacteristicsFormProps> = ({
                 type="checkbox"
                 checked={themeTags.includes(option)}
                 onChange={() => toggleThemeTag(option)}
-                className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="w-5 h-5 text-[#12557B] border-gray-300 rounded focus:ring-[#12557B]"
               />
               <span className="text-gray-700">{option}</span>
             </label>
@@ -108,13 +111,13 @@ export const CharacteristicsForm: React.FC<CharacteristicsFormProps> = ({
       </div>
 
       {(accessTags.length > 0 || themeTags.length > 0) && (
-        <div className="bg-blue-50 p-4 rounded-lg">
-          <h4 className="font-medium text-blue-900 mb-2">Selected Tags:</h4>
+        <div className="bg-gray-100 p-4 rounded-lg">
+          <h4 className="font-medium text-gray-800 mb-2">Selected Tags:</h4>
           <div className="flex flex-wrap gap-2">
             {[...accessTags, ...themeTags].map((tag, index) => (
               <span
                 key={index}
-                className="px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full"
+                className="px-3 py-1 bg-[#12557B] text-white text-sm rounded-full"
               >
                 {tag}
               </span>

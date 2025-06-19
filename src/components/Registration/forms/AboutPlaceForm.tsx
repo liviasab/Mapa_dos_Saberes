@@ -176,14 +176,14 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Place Name *
+            Nome do Espaço *
           </label>
           <div className="relative">
             <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
-              {...register("name", { required: "Place name is required" })}
+              {...register("name", { required: "Nome do espaço é obrigatório" })}
               className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter place name"
+              placeholder="Nome do espaço"
             />
           </div>
           {errors.name && (
@@ -193,14 +193,14 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Date of Visit *
+            Data da Visita *
           </label>
           <div className="relative">
             <Calendar className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
               type="date"
               {...register("visit_date", {
-                required: "Visit date is required",
+                required: "Data da visita é obrigatória",
               })}
               className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             />
@@ -213,14 +213,14 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Address *
+          Endereço *
         </label>
         <div className="relative">
           <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
           <input
-            {...register("address", { required: "Address is required" })}
+            {...register("address", { required: "Endereço é obrigatório" })}
             className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-            placeholder="Enter full address"
+            placeholder="Endereço"
           />
         </div>
         {errors.address && (
@@ -231,14 +231,14 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Contact *
+            Contato *
           </label>
           <div className="relative">
             <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
             <input
-              {...register("contact", { required: "Contact is required" })}
+              {...register("contact", { required: "Contato é obrigatório" })}
               className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-              placeholder="Phone number"
+              placeholder="Contato"
             />
           </div>
           {errors.contact && (
@@ -255,10 +255,10 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
             <input
               type="email"
               {...register("email", {
-                required: "Email is required",
+                required: "Email é obrigatório",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: "Invalid email address",
+                  message: "Email inválido",
                 },
               })}
               className="w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
@@ -273,13 +273,13 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
 
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Description *
+          Descrição *
         </label>
         <textarea
-          {...register("description", { required: "Description is required" })}
+          {...register("description", { required: "Descrição é obrigatória" })}
           rows={4}
           className="w-full px-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
-          placeholder="Describe the place and its educational value..."
+          placeholder="Descrição do espaço e seu valor educacional..."
         />
         {errors.description && (
           <p className="text-sm text-red-600">{errors.description.message}</p>
@@ -298,7 +298,7 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
           htmlFor="media-upload"
           className="block text-sm font-medium text-gray-700 mb-2"
         >
-          Visit Media (Image)
+          Mídia da visita (Imagem)
         </label>
 
         <input
@@ -313,7 +313,7 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
         {isUploading && (
           <p className="mt-2 text-sm text-blue-600 flex items-center">
             <UploadCloud className="w-4 h-4 mr-2 animate-bounce" />
-            Uploading image...
+            Enviando imagem...
           </p>
         )}
 
@@ -326,7 +326,7 @@ export const AboutPlaceForm: React.FC<AboutPlaceFormProps> = ({
               type="button"
               onClick={handleRemoveImage}
               className="ml-4 text-red-500 hover:text-red-700"
-              aria-label="Remove image"
+              aria-label="Remover imagem"
             >
               <Trash2 className="w-5 h-5" />
             </button>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Mail } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../Layout/Header";
 import { SpaceCard } from "./SpaceCard";
@@ -99,20 +99,21 @@ export const SpacesList: React.FC = () => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-900">
-              Discover Spaces
+              Descubra Espaços
             </h1>
             <p className="text-gray-600 mt-2">
-              Explore educational spaces for interdisciplinary learning
+              Explore como é usada a tecnologia na (re) produção do discurso
+              científico na escola
             </p>
           </div>
 
           {user?.email === "lms18@discente.ifpe.edu.br" && (
             <button
               onClick={handleRegisterNew}
-              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
+              className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center space-x-2"
             >
               <Plus className="w-5 h-5" />
-              <span>Register New Space</span>
+              <span>Novo</span>
             </button>
           )}
         </div>
@@ -123,19 +124,22 @@ export const SpacesList: React.FC = () => {
               <Plus className="w-12 h-12 text-gray-400" />
             </div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              {searchQuery ? "No spaces found" : "No spaces yet"}
+              {searchQuery
+                ? "Nenhum espaço encontrado"
+                : "Nenhum espaço registrado"}
             </h3>
             <p className="text-gray-600 mb-6">
               {searchQuery
-                ? `No spaces match "${searchQuery}". Try a different search term.`
-                : "Be the first to register an educational space!"}
+                ? `Nenhum espaço encontrado que corresponda a "${searchQuery}". Tente um termo de busca diferente.`
+                : "Seja o primeiro a registrar um espaço educacional!"}
             </p>
             {user?.email === "lms18@discente.ifpe.edu.br" && (
               <button
                 onClick={handleRegisterNew}
-                className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 inline-flex items-center space-x-2"
               >
-                Register First Space
+                <Plus className="w-5 h-5" />
+                <span>Novo</span>
               </button>
             )}
           </div>
@@ -153,6 +157,13 @@ export const SpacesList: React.FC = () => {
           </div>
         )}
       </main>
+
+      <div className="text-center py-8">
+        <p className="inline-flex items-center text-gray-900 font-medium">
+          <Mail className="w-5 h-5 mr-2" />
+          <span>Dúvidas? projetoenforifpe@gmail.com</span>
+        </p>
+      </div>
     </div>
   );
 };

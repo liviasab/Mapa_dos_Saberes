@@ -13,10 +13,12 @@ import {
 } from "lucide-react";
 import { supabase, Space } from "../../lib/supabase";
 import { Edit, Trash2 } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 export const SpaceDetailsView: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [space, setSpace] = useState<Space | null>(null);
   const [loading, setLoading] = useState(true);
   const [expandedSections, setExpandedSections] = useState<Set<string>>(
@@ -38,12 +40,12 @@ export const SpaceDetailsView: React.FC = () => {
         .single();
 
       if (error) {
-        console.error("Error fetching space:", error);
+        console.error("Erro ao buscar espaço:", error);
       } else {
         setSpace(data);
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Erro:", error);
     } finally {
       setLoading(false);
     }
@@ -64,11 +66,11 @@ export const SpaceDetailsView: React.FC = () => {
   };
 
   const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this space?")) {
+    if (window.confirm("Você tem certeza que deseja deletar este espaço?")) {
       const { error } = await supabase.from("spaces").delete().eq("id", id);
 
       if (error) {
-        console.error("Error deleting space:", error);
+        console.error("Erro ao deletar espaço:", error);
       } else {
         navigate("/spaces");
       }
@@ -88,13 +90,13 @@ export const SpaceDetailsView: React.FC = () => {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">
-            Space not found
+            Espaço não encontrado
           </h2>
           <button
             onClick={handleBack}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
+            className="bg-[#40B873] hover:bg-[#40B873]/90 text-white px-4 py-2 rounded-lg"
           >
-            Back to Spaces
+            Voltar para espaços
           </button>
         </div>
       </div>
@@ -112,24 +114,26 @@ export const SpaceDetailsView: React.FC = () => {
               className="flex items-center text-gray-600 hover:text-gray-900"
             >
               <ArrowLeft className="h-5 w-5 mr-2" />
-              Back to Spaces
+              Voltar para espaços
             </button>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => navigate(`/spaces/${id}/edit`)}
-                className="p-2 text-gray-500 hover:text-blue-600"
-                title="Edit space"
-              >
-                <Edit className="w-5 h-5" />
-              </button>
-              <button
-                onClick={handleDelete}
-                className="p-2 text-gray-500 hover:text-red-600"
-                title="Delete space"
-              >
-                <Trash2 className="w-5 h-5" />
-              </button>
-            </div>
+            {user?.email === "lms18@discente.ifpe.edu.br" && (
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => navigate(`/spaces/${id}/edit`)}
+                  className="p-2 text-gray-500 hover:text-[#12557B]"
+                  title="Editar espaço"
+                >
+                  <Edit className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={handleDelete}
+                  className="p-2 text-gray-500 hover:text-red-600"
+                  title="Deletar espaço"
+                >
+                  <Trash2 className="w-5 h-5" />
+                </button>
+              </div>
+            )}
           </div>
 
           <div className="flex items-start justify-between">
@@ -145,7 +149,7 @@ export const SpaceDetailsView: React.FC = () => {
                   </span>
                 </div>
                 {space.type && (
-                  <span className="px-3 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
+                  <span className="px-3 py-1 bg-[#12557B]/10 text-[#12557B] text-sm font-medium rounded-full">
                     {space.type}
                   </span>
                 )}
@@ -163,7 +167,7 @@ export const SpaceDetailsView: React.FC = () => {
                       href={space.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
+                      className="text-[#12557B] hover:underline"
                     >
                       {space.website}
                     </a>
@@ -177,6 +181,7 @@ export const SpaceDetailsView: React.FC = () => {
                   <Mail className="w-4 h-4" />
                   <span>{space.email}</span>
                 </div>
+
               </div>
             </div>
 
@@ -194,16 +199,16 @@ export const SpaceDetailsView: React.FC = () => {
           <div className="mt-6 p-4 bg-orange-50 border border-orange-200 rounded-lg flex items-start space-x-3">
             <AlertTriangle className="w-5 h-5 text-orange-600 mt-0.5" />
             <div>
-              <p className="text-orange-800 font-medium">ATTENTION!</p>
+              <p className="text-orange-800 font-medium">ATENÇÃO!</p>
               <p className="text-orange-700 text-sm">
-                You are now in an area whose information is collected by ENFOR.
+                Todas as informações listadas aqui são de autoria do ENFOR.
               </p>
             </div>
           </div>
 
           <div className="mt-4">
             <p className="text-gray-600">
-              <span className="font-medium">Date of visit:</span>{" "}
+              <span className="font-medium">Data da visita:</span>{" "}
               {new Date(space.visit_date).toLocaleDateString()}
             </p>
           </div>
@@ -214,13 +219,13 @@ export const SpaceDetailsView: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="space-y-6">
           {/* Characteristics Section */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-[#E8F4FD] rounded-2xl shadow-lg overflow-hidden border border-[#12557B]/10">
             <button
               onClick={() => toggleSection("characteristics")}
-              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50"
+              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#D6EAFB]"
             >
               <h2 className="text-xl font-semibold text-gray-900">
-                Characteristics of the visited spaces
+                Características dos espaços visitados
               </h2>
               {expandedSections.has("characteristics") ? (
                 <ChevronDown className="w-5 h-5 text-gray-500" />
@@ -233,13 +238,13 @@ export const SpaceDetailsView: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {space.access_tags?.map((tag, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#12557B] rounded-full"></div>
                       <span className="text-gray-700">{tag}</span>
                     </div>
                   ))}
                   {space.theme_tags?.map((tag, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#12557B] rounded-full"></div>
                       <span className="text-gray-700">{tag}</span>
                     </div>
                   ))}
@@ -249,13 +254,13 @@ export const SpaceDetailsView: React.FC = () => {
           </div>
 
           {/* Interdisciplinarity Section */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-[#E8F4FD] rounded-2xl shadow-lg overflow-hidden border border-[#12557B]/10">
             <button
               onClick={() => toggleSection("interdisciplinarity")}
-              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50"
+              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#D6EAFB]"
             >
               <h2 className="text-xl font-semibold text-gray-900">
-                Interdisciplinarity
+                Interdisciplinaridade
               </h2>
               {expandedSections.has("interdisciplinarity") ? (
                 <ChevronDown className="w-5 h-5 text-gray-500" />
@@ -267,19 +272,19 @@ export const SpaceDetailsView: React.FC = () => {
               <div className="px-6 pb-6 space-y-4">
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">
-                    Learning objective of visiting this space:
+                    Objetivo de aprendizagem do espaço:
                   </h3>
                   <p className="text-gray-700">{space.learning_objective}</p>
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">
-                    Disciplines that can be worked on in the space:
+                    Disciplinas que podem ser trabalhadas no espaço:
                   </h3>
                   <div className="flex flex-wrap gap-2">
                     {space.disciplines?.map((discipline, index) => (
                       <span
                         key={index}
-                        className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm"
+                        className="px-3 py-1 bg-[#12557B]/10 text-[#12557B] rounded-full text-sm"
                       >
                         {discipline}
                       </span>
@@ -288,14 +293,14 @@ export const SpaceDetailsView: React.FC = () => {
                 </div>
                 <div>
                   <h3 className="font-medium text-gray-900 mb-2">
-                    Main theme of the visited space:
+                    Tema principal do espaço:
                   </h3>
                   <p className="text-gray-700">{space.main_theme}</p>
                 </div>
                 {space.other_themes && space.other_themes.length > 0 && (
                   <div>
                     <h3 className="font-medium text-gray-900 mb-2">
-                      Other themes that can be worked on:
+                      Outros temas que podem ser trabalhados:
                     </h3>
                     <ul className="list-disc list-inside text-gray-700 space-y-1">
                       {space.other_themes.map((theme, index) => (
@@ -309,13 +314,13 @@ export const SpaceDetailsView: React.FC = () => {
           </div>
 
           {/* Inclusion and Accessibility Section */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-[#E8F4FD] rounded-2xl shadow-lg overflow-hidden border border-[#12557B]/10">
             <button
               onClick={() => toggleSection("inclusion")}
-              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50"
+              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#D6EAFB]"
             >
               <h2 className="text-xl font-semibold text-gray-900">
-                Inclusion and accessibility
+                Inclusão e acessibilidade
               </h2>
               {expandedSections.has("inclusion") ? (
                 <ChevronDown className="w-5 h-5 text-gray-500" />
@@ -328,7 +333,7 @@ export const SpaceDetailsView: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {space.inclusion_tags?.map((tag, index) => (
                     <div key={index} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                      <div className="w-2 h-2 bg-[#40B873] rounded-full"></div>
                       <span className="text-gray-700">{tag}</span>
                     </div>
                   ))}
@@ -338,13 +343,13 @@ export const SpaceDetailsView: React.FC = () => {
           </div>
 
           {/* Technologies Section */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-[#E8F4FD] rounded-2xl shadow-lg overflow-hidden border border-[#12557B]/10">
             <button
               onClick={() => toggleSection("technologies")}
-              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50"
+              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#D6EAFB]"
             >
               <h2 className="text-xl font-semibold text-gray-900">
-                Technologies
+                Tecnologias
               </h2>
               {expandedSections.has("technologies") ? (
                 <ChevronDown className="w-5 h-5 text-gray-500" />
@@ -358,7 +363,7 @@ export const SpaceDetailsView: React.FC = () => {
                   space.digital_technologies.length > 0 && (
                     <div>
                       <h3 className="font-medium text-gray-900 mb-2">
-                        Digital Technologies:
+                        Tecnologias digitais:
                       </h3>
                       <ul className="list-disc list-inside text-gray-700 space-y-1">
                         {space.digital_technologies.map((tech, index) => (
@@ -371,7 +376,7 @@ export const SpaceDetailsView: React.FC = () => {
                   space.didactic_strategies.length > 0 && (
                     <div>
                       <h3 className="font-medium text-gray-900 mb-2">
-                        Didactic Strategies:
+                        Estratégias didáticas:
                       </h3>
                       <ul className="list-disc list-inside text-gray-700 space-y-1">
                         {space.didactic_strategies.map((strategy, index) => (
@@ -385,13 +390,13 @@ export const SpaceDetailsView: React.FC = () => {
           </div>
 
           {/* Pedagogical Information Section */}
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div className="bg-[#E8F4FD] rounded-2xl shadow-lg overflow-hidden border border-[#12557B]/10">
             <button
               onClick={() => toggleSection("pedagogical")}
-              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-gray-50"
+              className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-[#D6EAFB]"
             >
               <h2 className="text-xl font-semibold text-gray-900">
-                Pedagogical information
+                Informações pedagógicas
               </h2>
               {expandedSections.has("pedagogical") ? (
                 <ChevronDown className="w-5 h-5 text-gray-500" />
@@ -403,12 +408,12 @@ export const SpaceDetailsView: React.FC = () => {
               <div className="px-6 pb-6 space-y-6">
                 <div>
                   <h3 className="font-medium text-gray-900 mb-3">
-                    Area 01: Main Exhibition
+                    Área 01: Exposição principal
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <h4 className="font-medium text-gray-800 mb-2">
-                        Contents:
+                        Conteúdo:
                       </h4>
                       <ul className="text-sm text-gray-600 space-y-1">
                         {space.contents?.map((content, index) => (
@@ -418,7 +423,7 @@ export const SpaceDetailsView: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-800 mb-2">
-                        Objectives:
+                        Objetivos:
                       </h4>
                       <ul className="text-sm text-gray-600 space-y-1">
                         {space.objectives?.map((objective, index) => (
@@ -428,7 +433,7 @@ export const SpaceDetailsView: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-800 mb-2">
-                        Methodology:
+                        Metodologia:
                       </h4>
                       <ul className="text-sm text-gray-600 space-y-1">
                         {space.methodologies?.map((methodology, index) => (
@@ -438,7 +443,7 @@ export const SpaceDetailsView: React.FC = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-800 mb-2">
-                        Evaluation:
+                        Avaliação:
                       </h4>
                       <ul className="text-sm text-gray-600 space-y-1">
                         {space.evaluations?.map((evaluation, index) => (
@@ -452,13 +457,13 @@ export const SpaceDetailsView: React.FC = () => {
                 <div className="space-y-4">
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
-                      General methodology used:
+                      Metodologia utilizada:
                     </h4>
                     <p className="text-gray-700">{space.general_methodology}</p>
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
-                      Relationship with society:
+                      Relacionamento com a sociedade:
                     </h4>
                     <p className="text-gray-700">
                       {space.society_relationship}
@@ -466,7 +471,7 @@ export const SpaceDetailsView: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
-                      Contribution to teacher training:
+                      Contribuição para a formação docente:
                     </h4>
                     <p className="text-gray-700">
                       {space.teacher_contribution}
@@ -474,7 +479,7 @@ export const SpaceDetailsView: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-medium text-gray-900 mb-2">
-                      Recommended references:
+                      Referências recomendadas:
                     </h4>
                     <p className="text-gray-700">
                       {space.recommended_references}
@@ -490,11 +495,18 @@ export const SpaceDetailsView: React.FC = () => {
         <div className="mt-8 text-center">
           <button
             onClick={handleBack}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-colors"
+            className="bg-[#40B873] hover:bg-[#40B873]/90 text-white font-semibold py-3 px-8 rounded-xl transition-colors"
           >
-            Back to profiles
+            Voltar para perfis
           </button>
         </div>
+      </div>
+
+      <div className="text-center py-8">
+        <p className="inline-flex items-center text-gray-900 font-medium">
+          <Mail className="w-5 h-5 mr-2" />
+          <span>Dúvidas? projetoenforifpe@gmail.com</span>
+        </p>
       </div>
     </div>
   );

@@ -41,7 +41,7 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
       <div className="relative">
-        <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+        <div className="w-full h-48 bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center">
           {space.media_urls && space.media_urls.length > 0 ? (
             <img
               src={space.media_urls[0]}
@@ -68,7 +68,7 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
             {space.name}
           </h3>
           {space.type && (
-            <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">
+            <span className="px-3 py-1 bg-blue-500 text-white text-xs font-bold rounded-full">
               {space.type}
             </span>
           )}
@@ -88,7 +88,11 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
             {space.theme_tags.slice(0, 3).map((tag, index) => (
               <span
                 key={index}
-                className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full"
+                className={`px-2 py-1 text-xs font-medium rounded-full ${
+                  index % 2 === 0
+                    ? 'bg-blue-100 text-blue-800'
+                    : 'bg-green-100 text-green-800'
+                }`}
               >
                 {tag}
               </span>
@@ -103,9 +107,9 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
 
         <button
           onClick={handleClick}
-          className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group-hover:shadow-lg"
+          className="w-full bg-gradient-to-r from-[#12557B] to-[#40B873] hover:from-[#12557B]/90 hover:to-[#40B873]/90 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 group-hover:shadow-lg"
         >
-          <span>View More Information</span>
+          <span>Ver mais informações</span>
           <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </button>
 

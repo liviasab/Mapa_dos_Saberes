@@ -158,8 +158,7 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
       {/* Digital Technologies */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          Enter what digital technologies the space has (Applications, Internet,
-          QR Code, among others):
+        Quais tecnologias digitais o espaço possui (Aplicativos, Internet, QR Code, entre outros)?
         </label>
         <div className="space-y-3">
           {digitalTechs.map((tech, index) => (
@@ -168,8 +167,8 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
               <input
                 value={tech}
                 onChange={(e) => updateDigitalTech(index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Enter digital technology"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Informe a tecnologia digital"
               />
               {index > 0 && (
                 <button
@@ -185,10 +184,10 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
           <button
             type="button"
             onClick={addDigitalTech}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -198,18 +197,17 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
         <button
           type="button"
           onClick={() => setShowContext1(true)}
-          className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+          className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
         >
           <Info className="w-5 h-5" />
-          <span>Context</span>
+          <span>Contexto</span>
         </button>
       </div>
 
       {/* Didactic Strategies */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          From this perspective, does the visited space use technologies as
-          didactic strategies for teaching? How are they used?
+        Na perspectiva do contexto, o  espaço visitado utiliza tecnologias como estratégias didáticas para o ensino? como são utilizadas?*
         </label>
         <div className="space-y-3">
           {didacticStrategies.map((strategy, index) => (
@@ -220,8 +218,8 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
               <textarea
                 value={strategy}
                 onChange={(e) => updateDidacticStrategy(index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Describe how technologies are used as didactic strategies"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Descreva em cada bloco como as tecnologias são utilizadas como estratégias didáticas"
                 rows={2}
               />
               {index > 0 && (
@@ -238,10 +236,10 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
           <button
             type="button"
             onClick={addDidacticStrategy}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -249,8 +247,7 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
       {/* Technology Relationships */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          What is the relationship between the technologies used in the space
-          and content from Physics, Chemistry, and Mathematics?
+          Qual é a relação entre as tecnologias utilizadas no espaço e o conteúdo de Física, Química e Matemática?*
         </label>
         <div className="space-y-4">
           {techRelationships.map((rel, index) => (
@@ -269,13 +266,13 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
                         e.target.value
                       )
                     }
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                    placeholder="Technology name"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                    placeholder="Nome da tecnologia"
                   />
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                     <div>
                       <label className="block text-xs text-gray-600 mb-1">
-                        Physics:
+                        Física:
                       </label>
                       <textarea
                         value={rel.physics}
@@ -286,14 +283,14 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
                             e.target.value
                           )
                         }
-                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
-                        placeholder="Describe relationship"
+                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#12557B]"
+                        placeholder="Descreva a relação"
                         rows={2}
                       />
                     </div>
                     <div>
                       <label className="block text-xs text-gray-600 mb-1">
-                        Chemistry:
+                        Química:
                       </label>
                       <textarea
                         value={rel.chemistry}
@@ -304,14 +301,14 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
                             e.target.value
                           )
                         }
-                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
-                        placeholder="Describe relationship"
+                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#12557B]"
+                        placeholder="Descreva a relação"
                         rows={2}
                       />
                     </div>
                     <div>
                       <label className="block text-xs text-gray-600 mb-1">
-                        Mathematics:
+                        Matemática:
                       </label>
                       <textarea
                         value={rel.mathematics}
@@ -322,8 +319,8 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
                             e.target.value
                           )
                         }
-                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-blue-500"
-                        placeholder="Describe relationship"
+                        className="w-full px-2 py-1 text-sm border border-gray-300 rounded focus:ring-1 focus:ring-[#12557B]"
+                        placeholder="Descreva a relação"
                         rows={2}
                       />
                     </div>
@@ -344,10 +341,10 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
           <button
             type="button"
             onClick={addTechRelationship}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -357,19 +354,17 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
         <button
           type="button"
           onClick={() => setShowContext2(true)}
-          className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+          className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
         >
           <Info className="w-5 h-5" />
-          <span>Context</span>
+          <span>Contexto</span>
         </button>
       </div>
 
       {/* Technology Developments */}
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-2">
-          In the visited space, was it possible to notice any technology that
-          was developed with the aim of improving practices or performance of
-          productions and daily use for society? *
+        No espaço visitado foi possível notar alguma tecnologia que foi desenvolvida no intuito de aprimorar as práticas ou performance de produções e utilização cotidiana para sociedade? *
         </label>
         <div className="space-y-3">
           {techDevelopments.map((dev, index) => (
@@ -380,8 +375,8 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
               <textarea
                 value={dev}
                 onChange={(e) => updateTechDevelopment(index, e.target.value)}
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                placeholder="Describe technology developments for society"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#12557B] focus:border-transparent"
+                placeholder="Descreva os desenvolvimentos tecnológicos feitos para a sociedade"
                 rows={2}
               />
               {index > 0 && (
@@ -398,10 +393,10 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
           <button
             type="button"
             onClick={addTechDevelopment}
-            className="flex items-center space-x-2 text-blue-600 hover:text-blue-800"
+            className="flex items-center space-x-2 text-[#12557B] hover:text-[#12557B]/90"
           >
             <Plus className="w-4 h-4" />
-            <span>More</span>
+            <span>Mais</span>
           </button>
         </div>
       </div>
@@ -411,16 +406,15 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-2xl max-h-96 overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Context Information</h3>
+              <h3 className="text-lg font-semibold">Informações do Contexto</h3>
               <button onClick={() => setShowContext1(false)}>
                 <X className="w-6 h-6" />
               </button>
             </div>
             <div className="text-sm text-gray-600">
               <p>
-                Consider digital technologies that enhance the learning
-                experience, facilitate access to information, or provide
-                interactive elements within the educational space.
+              No Museu de  Ciências e Tecnologia da PUC do Rio Grande do Sul (MCT-PUCRS), vemos a utilização de tecnologias para explicar conteúdos científicos que estão presentes no nosso cotidiano. 
+              Como por exemplo, temos o globo de plasma que é utilizado para explicar os conceitos de radioatividade e energia, conteúdos esses que permeiam entre a física e química. 
               </p>
             </div>
           </div>
@@ -431,17 +425,17 @@ export const TechnologiesForm: React.FC<TechnologiesFormProps> = ({
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-2xl max-h-96 overflow-y-auto">
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold">Context Information</h3>
+              <h3 className="text-lg font-semibold">Informações do Contexto</h3>
               <button onClick={() => setShowContext2(false)}>
                 <X className="w-6 h-6" />
               </button>
             </div>
             <div className="text-sm text-gray-600">
               <p>
-                Focus on technologies that have been developed or adapted to
-                benefit society, improve daily life practices, or enhance
-                productivity in various sectors.
-              </p>
+              Na visita ao Museu de Ciências Nucleares do Recife foi possível notar que o espaço não só tinha um objetivo social que era “desmistificar os mitos da radioatividade”,
+               como também possuía todo um histórico sociocultural com relação as tecnologias, mostrando o desenvolvimento das tecnologias cotidianas atuais desenvolvidas a partir de tecnologias antigas ao longo da história.</p>
+
+               <p>Exemplo: No museu temos o aparelho de irradiação de alimentos que foi desenvolvido a partir dos conhecimentos obtidos no desenvolvimento e uso de bombas nucleares. </p>
             </div>
           </div>
         </div>

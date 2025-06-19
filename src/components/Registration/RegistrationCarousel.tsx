@@ -15,12 +15,12 @@ interface SpaceFormData {
 }
 
 const FORM_STEPS = [
-  { title: "About the Place", component: AboutPlaceForm },
-  { title: "Characteristics", component: CharacteristicsForm },
-  { title: "Interdisciplinarity", component: InterdisciplinarityForm },
-  { title: "Inclusion & Accessibility", component: InclusionForm },
-  { title: "Technologies", component: TechnologiesForm },
-  { title: "Pedagogical Information", component: PedagogicalForm },
+  { title: "Sobre o Espaço", component: AboutPlaceForm },
+  { title: "Características", component: CharacteristicsForm },
+  { title: "Interdisciplinaridade", component: InterdisciplinarityForm },
+  { title: "Inclusão e Acessibilidade", component: InclusionForm },
+  { title: "Tecnologias", component: TechnologiesForm },
+  { title: "Informações pedagógicas", component: PedagogicalForm },
 ];
 
 const getInitialStepData = (stepIndex: number): SpaceFormData => {
@@ -109,7 +109,7 @@ export const RegistrationCarousel: React.FC = () => {
 
   const handleSubmit = async () => {
     if (!user) {
-      alert("Authentication error. Please log in again.");
+      alert("Erro de autenticação. Por favor, faça login novamente.");
       return;
     }
 
@@ -126,15 +126,15 @@ export const RegistrationCarousel: React.FC = () => {
         .insert([completeData]);
 
       if (dbError) {
-        throw new Error("Error saving space to database: " + dbError.message);
+        throw new Error("Erro ao salvar espaço no banco de dados: " + dbError.message);
       }
 
-      alert("Space registered successfully!");
+      alert("Espaço registrado com sucesso!");
       navigate("/spaces");
     } catch (error: any) {
-      console.error("Error during submission:", error.message);
+      console.error("Erro durante a submissão:", error.message);
       alert(
-        "An error occurred during submission. Please try again. " +
+        "Erro ao submeter. Por favor, tente novamente. " +
           error.message
       );
     } finally {
@@ -169,11 +169,11 @@ export const RegistrationCarousel: React.FC = () => {
             </button>
 
             <h1 className="text-2xl font-bold text-gray-900">
-              Register New Space
+              Cadastre um novo espaço
             </h1>
 
             <div className="text-sm text-gray-500">
-              Step {currentStep + 1} of {FORM_STEPS.length}
+              Passo {currentStep + 1} de {FORM_STEPS.length}
             </div>
           </div>
 
@@ -184,7 +184,7 @@ export const RegistrationCarousel: React.FC = () => {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium ${
                       index <= currentStep
-                        ? "bg-blue-500 text-white"
+                        ? "bg-[#40B873] text-white"
                         : "bg-gray-200 text-gray-500"
                     }`}
                   >
@@ -193,7 +193,7 @@ export const RegistrationCarousel: React.FC = () => {
                   {index < FORM_STEPS.length - 1 && (
                     <div
                       className={`flex-1 h-1 mx-2 ${
-                        index < currentStep ? "bg-blue-500" : "bg-gray-200"
+                        index < currentStep ? "bg-[#40B873]" : "bg-gray-200"
                       }`}
                     />
                   )}
@@ -205,7 +205,7 @@ export const RegistrationCarousel: React.FC = () => {
                 <span
                   key={index}
                   className={`text-xs ${
-                    index <= currentStep ? "text-blue-600" : "text-gray-400"
+                    index <= currentStep ? "text-[#12557B]" : "text-gray-400"
                   }`}
                 >
                   {step.title}
@@ -236,25 +236,25 @@ export const RegistrationCarousel: React.FC = () => {
               className="flex items-center space-x-2 px-6 py-3 text-gray-600 hover:text-gray-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronLeft className="w-5 h-5" />
-              <span>Previous</span>
+              <span>Anterior</span>
             </button>
 
             <div className="flex space-x-4">
               {!isLastStep ? (
                 <button
                   onClick={handleNext}
-                  className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition-colors"
+                  className="flex items-center space-x-2 bg-[#40B873] hover:bg-[#359e64] text-white px-6 py-3 rounded-lg transition-colors"
                 >
-                  <span>Next</span>
+                  <span>Próximo</span>
                   <ChevronRight className="w-5 h-5" />
                 </button>
               ) : (
                 <button
                   onClick={handleSubmit}
                   disabled={loading}
-                  className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg transition-colors disabled:opacity-50"
+                  className="bg-[#40B873] hover:bg-[#359e64] text-white px-6 py-3 rounded-lg transition-colors disabled:opacity-50"
                 >
-                  {loading ? "Submitting..." : "Submit Registration"}
+                  {loading ? "Enviando..." : "Enviar Cadastro"}
                 </button>
               )}
             </div>
