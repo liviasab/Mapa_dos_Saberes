@@ -1,5 +1,5 @@
 import React from "react";
-import { LogOut, Search, Mail } from "lucide-react";
+import { LogOut, Search } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 import LogoOut from "../../assets/icons/logo_out.svg?react";
 
@@ -33,9 +33,7 @@ export const Header: React.FC<HeaderProps> = ({
             <div className="w-10 h-10 flex items-center justify-center">
               <LogoOut />
             </div>
-            <h1 className="text-xl font-bold text-gray-900">
-              Mapa dos Saberes
-            </h1>
+            
           </div>
 
           {showSearch && (
