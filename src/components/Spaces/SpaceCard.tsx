@@ -38,9 +38,16 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
     navigate(`/spaces/${space.id}/edit`);
   };
 
-  // Formata o título para pesquisa no Google Maps
-  const formatMapSearch = (title: string): string => {
-    return encodeURIComponent(title);
+  // Função para formatar a pesquisa incluindo título e CEP
+  const getMapSearchQuery = (): string => {
+    // Extrai o CEP do endereço (formato brasileiro: 00000-000)
+    const cepMatch = space.address.match(/\d{5}-\d{3}/);
+    const cep = cepMatch ? cepMatch[0] : "";
+    
+    // Combina título + CEP para pesquisa
+    const searchQuery = cep ? `${space.name} ${cep}` : space.name;
+    
+    return encodeURIComponent(searchQuery);
   };
 
   return (
@@ -83,16 +90,15 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
           {space.description}
         </p>
 
-        {/* Link do Google Maps que pesquisa SOMENTE pelo título do card */}
+        {/* Link do Google Maps com pesquisa por título + CEP */}
         <a
-          href={`https://www.google.com/maps/search/?api=1&query=${formatMapSearch(space.name)}`}
+          href={`https://www.google.com/maps/search/?api=1&query=${getMapSearchQuery()}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
           onClick={(e) => e.stopPropagation()}
         >
           <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
-          {/* Texto clicável mostra o endereço, mas a pesquisa é pelo título */}
           <span className="hover:underline">{space.address}</span>
         </a>
 
