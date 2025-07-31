@@ -38,16 +38,7 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
     navigate(`/spaces/${space.id}/edit`);
   };
 
-  const handleMapClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    window.open(
-      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-        space.address
-      )}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  };
+
 
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
@@ -89,13 +80,18 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
           {space.description}
         </p>
 
-        <div className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-          <MapPin
-            onClick={handleMapClick}
-            className="w-4 h-4 relative z-10 cursor-pointer transition-colors hover:text-blue-600"
-          />
-          <span className="truncate">{space.address}</span>
-        </div>
+        <a
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+            space.address
+          )}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+          <span className="hover:underline">{space.address}</span>
+        </a>
 
         {space.theme_tags && space.theme_tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
