@@ -20,10 +20,10 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
   const navigate = useNavigate();
 
   const handleDelete = async () => {
-    if (window.confirm("Are you sure you want to delete this space?")) {
+    if (window.confirm("Tem certeza que deseja excluir este espaço?")) {
       const { error } = await deleteSpace(space.id);
       if (error) {
-        console.error("Error deleting space:", error);
+        console.error("Erro ao excluir espaço:", error);
       } else {
         onDelete(space.id);
       }
@@ -38,7 +38,15 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
     navigate(`/spaces/${space.id}/edit`);
   };
 
-
+  // Função para formatar endereços de rodovias corretamente
+  const formatAddressForMaps = (address: string): string => {
+    return address
+      .replace(/(PE|BR|RJ|SP|MG|BA|PR|RS|SC|ES|GO|MT|MS|TO|AM|PA|AP|RO|RR|AC|AL|CE|MA|PB|PI|RN|SE)-(\d+)/gi, '$1$2') // Remove hífens em rodovias (PE-050 → PE050)
+      .replace(/\s*,\s*/g, ' ') // Substitui vírgulas por espaços
+      .replace(/\s*-\s*/g, ' ') // Remove hífens com espaços
+      .replace(/\s+/g, '+')     // Substitui espaços por +
+      .replace(/%20/g, '+');     // Garante que espaços codificados sejam +
+  };
 
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
@@ -81,15 +89,15 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
         </p>
 
         <a
-  href={`https://www.google.com/maps/search/?api=1&query=${space.address.replace(/\s+/g, '+')}`}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
-  onClick={(e) => e.stopPropagation()}
->
-  <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
-  <span className="hover:underline">{space.address}</span>
-</a>
+          href={`https://www.google.com/maps/search/?api=1&query=${formatAddressForMaps(space.address)}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+          <span className="hover:underline">{space.address}</span>
+        </a>
 
         {space.theme_tags && space.theme_tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
@@ -107,7 +115,7 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
             ))}
             {space.theme_tags.length > 3 && (
               <span className="px-2 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">
-                +{space.theme_tags.length - 3} more
+                +{space.theme_tags.length - 3} mais
               </span>
             )}
           </div>
