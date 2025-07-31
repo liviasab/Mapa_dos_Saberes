@@ -38,9 +38,9 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
     navigate(`/spaces/${space.id}/edit`);
   };
 
-  // Formata o nome para pesquisa no Google Maps substituindo espaços por "+"
-  const formatMapSearch = (name: string): string => {
-    return name.replace(/\s+/g, '+');
+  // Formata o título para pesquisa no Google Maps
+  const formatMapSearch = (title: string): string => {
+    return encodeURIComponent(title);
   };
 
   return (
@@ -83,7 +83,7 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
           {space.description}
         </p>
 
-        {/* Link do Google Maps usando o título do card para pesquisa */}
+        {/* Link do Google Maps que pesquisa SOMENTE pelo título do card */}
         <a
           href={`https://www.google.com/maps/search/?api=1&query=${formatMapSearch(space.name)}`}
           target="_blank"
@@ -92,7 +92,7 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
           onClick={(e) => e.stopPropagation()}
         >
           <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
-          {/* Texto clicável mostra o endereço completo */}
+          {/* Texto clicável mostra o endereço, mas a pesquisa é pelo título */}
           <span className="hover:underline">{space.address}</span>
         </a>
 
