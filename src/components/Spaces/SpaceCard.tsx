@@ -38,9 +38,9 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
     navigate(`/spaces/${space.id}/edit`);
   };
 
-  // Formata o endereço substituindo espaços por "+"
-  const formatAddress = (address: string): string => {
-    return address.replace(/\s+/g, '+');
+  // Formata o nome para pesquisa no Google Maps substituindo espaços por "+"
+  const formatMapSearch = (name: string): string => {
+    return name.replace(/\s+/g, '+');
   };
 
   return (
@@ -83,14 +83,16 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
           {space.description}
         </p>
 
+        {/* Link do Google Maps usando o título do card para pesquisa */}
         <a
-          href={`https://www.google.com/maps/search/?api=1&query=${formatAddress(space.address)}`}
+          href={`https://www.google.com/maps/search/?api=1&query=${formatMapSearch(space.name)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
           onClick={(e) => e.stopPropagation()}
         >
           <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+          {/* Texto clicável mostra o endereço completo */}
           <span className="hover:underline">{space.address}</span>
         </a>
 
