@@ -38,6 +38,17 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
     navigate(`/spaces/${space.id}/edit`);
   };
 
+  const handleMapClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    window.open(
+      `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+        space.address
+      )}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
   return (
     <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden group">
       <div className="relative">
@@ -79,7 +90,10 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
         </p>
 
         <div className="flex items-center space-x-2 text-sm text-gray-500 mb-4">
-          <MapPin className="w-4 h-4" />
+          <MapPin
+            onClick={handleMapClick}
+            className="w-4 h-4 relative z-10 cursor-pointer transition-colors hover:text-blue-600"
+          />
           <span className="truncate">{space.address}</span>
         </div>
 
