@@ -81,16 +81,15 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
         </p>
 
         <a
-         href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(space.address)}`}
-
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
-          <span className="hover:underline">{space.address}</span>
-        </a>
+  href={`https://www.google.com/maps/search/?api=1&query=${space.address.replace(/\s+/g, '+')}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
+  onClick={(e) => e.stopPropagation()}
+>
+  <MapPin className="w-4 h-4 flex-shrink-0 mt-1" />
+  <span className="hover:underline">{space.address}</span>
+</a>
 
         {space.theme_tags && space.theme_tags.length > 0 && (
           <div className="flex flex-wrap gap-1 mb-4">
