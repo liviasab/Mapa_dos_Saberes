@@ -38,14 +38,9 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
     navigate(`/spaces/${space.id}/edit`);
   };
 
-  // Função para formatar endereços de rodovias corretamente
-  const formatAddressForMaps = (address: string): string => {
-    return address
-      .replace(/(PE|BR|RJ|SP|MG|BA|PR|RS|SC|ES|GO|MT|MS|TO|AM|PA|AP|RO|RR|AC|AL|CE|MA|PB|PI|RN|SE)-(\d+)/gi, '$1$2') // Remove hífens em rodovias (PE-050 → PE050)
-      .replace(/\s*,\s*/g, ' ') // Substitui vírgulas por espaços
-      .replace(/\s*-\s*/g, ' ') // Remove hífens com espaços
-      .replace(/\s+/g, '+')     // Substitui espaços por +
-      .replace(/%20/g, '+');     // Garante que espaços codificados sejam +
+  // Formata o endereço substituindo espaços por "+"
+  const formatAddress = (address: string): string => {
+    return address.replace(/\s+/g, '+');
   };
 
   return (
@@ -89,7 +84,7 @@ export const SpaceCard: React.FC<SpaceCardProps> = ({
         </p>
 
         <a
-          href={`https://www.google.com/maps/search/?api=1&query=${formatAddressForMaps(space.address)}`}
+          href={`https://www.google.com/maps/search/?api=1&query=${formatAddress(space.address)}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-start space-x-2 text-sm text-gray-500 mb-4 hover:text-blue-600 transition-colors cursor-pointer min-w-0"
